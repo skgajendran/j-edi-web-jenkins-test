@@ -5,6 +5,12 @@ services:
     image: juniperps/j-edi-web
     networks:
       - jedi
+    volumes:
+      - type: bind
+        source: /data/robot/mns-oam
+        target: /var/app/public/ostinato/output
+    ports:
+      - "9595:9595"
     deploy:
       mode: replicated
       replicas: 1
