@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import {LayoutModule} from "./layout/layout.module";
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AppRoutingModule } from "./app-routing.module";
+import { AutomationModule } from './automation/automation.module';
 
 import { ServicesModule } from './services/services.module';
 import { JcomponentsModule } from './jcomponents/jcomponents.module';
@@ -31,7 +32,8 @@ import { HttpModule } from '@angular/http';
     ServicesModule,
     JcomponentsModule,
     SharedModule,
-    HttpModule
+    HttpModule,
+    AutomationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

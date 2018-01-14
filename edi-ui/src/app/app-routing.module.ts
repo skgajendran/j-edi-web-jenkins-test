@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent }   from './dashboard/dashboard.component';
 import { ResultComponent } from './dashboard/result.component';
 import { ResultDetailComponent } from './dashboard/result-detail.component'
+import { TriggerAutomationComponent } from './automation/trigger-automation/trigger-automation.component';
 
 import { AppComponent } from './app.component';
 import {LayoutComponent} from "./layout/layout.component";
@@ -23,7 +24,8 @@ const routes: Routes = [
         { path: '', redirectTo: 'dashboard', pathMatch: "full" },
         { path: 'dashboard',  component: DashboardComponent },
         { path: 'results/:id',  component: ResultComponent },
-        { path: 'results-detail/:id',  component: ResultDetailComponent }
+        { path: 'results-detail/:id',  component: ResultDetailComponent },
+        { path: 'automation/trigger-automation', component: TriggerAutomationComponent }
       ]
     }
 ];
