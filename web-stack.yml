@@ -1,7 +1,7 @@
 version:  '3.3'
 
 services:
-  api-gateway:
+  webapp:
     image: juniperps/j-edi-web
     networks:
       - jedi
@@ -15,7 +15,7 @@ services:
         - "traefik.frontend.rule=PathPrefixStrip: /jedi"
         - traefik.docker.network=jedi
     env_file:
-      - dev.env
+      - edi-web.env
 networks:
-  infrastructure:
+  jedi:
     external: true
