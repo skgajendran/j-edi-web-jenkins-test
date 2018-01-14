@@ -4,13 +4,14 @@ ARG env_node=dev
 ARG tar=production
 ARG cli=1.5.5
 
-RUN apt-get update -y && apt-get install -y python
-
 COPY ./edi-server/ /var/app/
 COPY ./edi-ui/ /var/web/
 
-RUN chown -R node:node /var/web &&\
-    chown -R node:node /var/app
+RUN apt-get update -y && apt-get install -y python &&\
+    chown -R node:node /var/web &&\
+    chown -R node:node /var/app &&\
+    rm -rf /var/app/node_modules &&\
+    rm -rf /var/web/node_modules
 
 USER node
 
