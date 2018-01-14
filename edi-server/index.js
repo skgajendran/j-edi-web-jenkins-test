@@ -21,7 +21,9 @@ app.use(express.static('./public', {redirect:false}));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-server.listen(9595, "0.0.0.0");
+port = process.env.NODE_PORT
+
+server.listen(port, "0.0.0.0");
 
 app.get('*', function (req, res) {
     res.sendFile('./index.html', {root: __dirname + '/public/'});

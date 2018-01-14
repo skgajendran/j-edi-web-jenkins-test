@@ -1,0 +1,16 @@
+version:  '3.3'
+
+services:
+  api-gateway:
+    image: juniperps/j-edi-web
+    networks:
+      - jedi
+    deploy:
+      replicas: 1
+    ports:
+      - "9595:9595"
+    env_file:
+      - dev.env
+networks:
+  infrastructure:
+    external: true
