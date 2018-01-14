@@ -1,0 +1,19 @@
+.result {
+    margin: 10px 17px 10px;
+}
+.result-hidden {
+    display:none;
+    margin: 10px 17px 10px;    
+}
+.result-show {
+    margin: 10px 17px 10px;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color:#f0f8ff
+ }

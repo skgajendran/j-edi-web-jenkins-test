@@ -1,0 +1,16 @@
+#con-status {
+    margin:0 15px 0 15px;
+}
+#con-status span {
+    display: block;
+    text-align:center
+}
+.disconnected {
+    color:#a94442
+}
+.connected {
+    color:green
+}
+.connecting {
+    color: #ffff00
+}

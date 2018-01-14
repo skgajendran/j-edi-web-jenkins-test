@@ -1,0 +1,17 @@
+{
+  "name": "edi-server",
+  "version": "0.1.0",
+  "description": "express server for node app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pplavetzki",
+  "license": "SEE LICENSE IN license.md",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "muter": "^0.6.0"
+  }
+}
