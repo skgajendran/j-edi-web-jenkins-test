@@ -6,9 +6,14 @@ services:
     networks:
       - jedi
     deploy:
+      mode: replicated
       replicas: 1
-    ports:
-      - "9595:9595"
+      labels:
+        - traefik.enable=true
+        - traefik.backend=jedi
+        - traefik.port=9595
+        - "traefik.frontend.rule=PathPrefixStrip: /jedi"
+        - traefik.docker.network=jedi
     env_file:
       - dev.env
 networks:
