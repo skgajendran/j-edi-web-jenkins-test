@@ -1,0 +1,61 @@
+<div class="content" style="padding-bottom:50px">
+  <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="page-header">
+              <h1 class="" style="font-size: 24px; font-weight:300"><i class="fa-fw fa fa-fast-forward"></i> Automation <span style="font-size: 16px;">&gt; Trigger Automation</span></h1>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-dismissible" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess, 'hide': hide, 'show': !hide}" role="alert">
+            <button type="button" (click)="onClick()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>{{strongMessage}}!</strong> {{description}}
+          </div>   
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+      <form class="juniper-form" #mainForm="ngForm"  (ngSubmit)="onSubmit()">
+          <header>
+            Provision Automation
+          </header>   
+          <fieldset>
+              <div class="row">
+              <section class="col col-4">
+              <label for="automationName">Automation Name</label>
+              <label class="input">
+                  <input type="text" placeholder="automation name" id="automationName" class="form-control" required  maxlength="50"
+                      name="automationName" [(ngModel)]="automation.automation_name" #automationName="ngModel" >
+              </label>
+            </section>
+
+            <section class="col col-4">
+                <label for="tenantName">Tenant Name</label>
+                <label class="input">
+                        <input type="text" placeholder="tenant name" id="tenantName" class="form-control" required  maxlength="50"
+                            name="tenantName" [(ngModel)]="automation.tenant_name" #tenantName="ngModel" >
+                </label>
+              </section>
+                      
+            <section class="col col-4">
+              <label for="stackName">Stack Name</label>
+              <label class="input">
+                  <input type="text" placeholder="stack name" id="stackName" class="form-control" required  maxlength="50"
+                      name="stackName" [(ngModel)]="automation.stack_name" #stackName="ngModel" >
+              </label>
+
+            </section>
+
+              </div>
+          </fieldset>
+          <footer>
+              <button type="submit" class="btn btn-primary" title="Submit" [disabled]="!mainForm.form.valid">Submit</button>
+            <button type="button" class="btn btn-default" onclick="window.history.back();">
+              Back
+            </button>
+          </footer>
+      </form>
+    </div>
+  </div>
+</div>
