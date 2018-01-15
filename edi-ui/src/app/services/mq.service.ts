@@ -9,6 +9,8 @@ import stompobservable from 'webstomp-obs';
 import Client from 'webstomp-obs/types/client';
 import { ConnectedClient } from 'webstomp-obs/types/connectedClient';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/first'
+import 'rxjs/add/observable/from'
 
 export class MqService {
 
@@ -31,33 +33,60 @@ export class MqService {
     this.sourceConnection = this.wsClient.connect({login: login, passcode: password});
   }
 
-  public onConnect = (onConnect: Function, onError: Function): void => {
+  public onConnect = (onConnect: Function, onError?: Function): void => {
     this.sourceConnection.subscribe(
       function (connectedClient: ConnectedClient) {
           onConnect(connectedClient)
       },
       function (err: string) {
-          onError(err);
+          onError(err) && onError(err);
       }
     )
   }
 
-  public onMessage = (onMessageFn: Function, onError: Function): void => {
+  public onMessage = (onMessageFn: Function, onError?: Function): void => {
     this.onConnect(
       (connectedClient: ConnectedClient) => {
         connectedClient
-          .subscribeBroadcast(this.topic)
+          .subscribeBroadcast(this.topic, {ack: 'client'})
           .subscribe(
               function (message) {
                   onMessageFn(message)
+                  message.ack()
               },
               function (err) {
-                  onError(err)
+                  onError(err) && onError(err);
               }
           )
       },
       (err: string) => {
         onError(err)
+      }
+    )
+  }
+
+  public onError = (onErrorMsgFn: Function): void => {
+    this.onConnect(
+      (connectedClient: ConnectedClient) => {
+        connectedClient.error()
+          .subscribe(
+              function (message) {
+                  onErrorMsgFn(message)
+              }
+          )
+      }
+    )
+  }
+
+  public onConnectionError = (onConnectionErrorMsgFn: Function): void => {
+    this.onConnect(
+      (connectedClient: ConnectedClient) => {
+        connectedClient.connectionError()
+          .subscribe(
+              function (message) {
+                  onConnectionErrorMsgFn(message)
+              }
+          )
       }
     )
   }
