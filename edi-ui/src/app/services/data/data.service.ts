@@ -37,6 +37,23 @@ export class DataService {
             return Observable.of < boolean > (false);
     }
 
+    postAutomationProvisioning(provisionData:any): Observable<Response> {
+        let serviceName = environment.apiServer;
+        let headers = new Headers({
+            'Content-Type': 'application/json'
+        });
+        let options = new RequestOptions({
+            headers: headers
+        });
+        let serviceUrl = `http://${serviceName}/automation/stacks/provision`;
+        return this.http
+            .post(serviceUrl, provisionData)
+            .catch(err => {
+                console.log('Error kicking off automation provisioning.');
+                return Observable.throw(err);
+            });  
+    }
+
     getAutomationResults(): Observable < Response > {
         let serviceName = environment.apiServer;
         let headers = new Headers({

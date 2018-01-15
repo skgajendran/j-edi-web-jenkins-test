@@ -1,16 +1,27 @@
 version:  '3.3'
 
 services:
-  api-gateway:
+  webapp:
     image: juniperps/j-edi-web
     networks:
       - jedi
-    deploy:
-      replicas: 1
+    volumes:
+      - type: bind
+        source: /data/robot/mns-oam
+        target: /var/app/public/ostinato/output
     ports:
       - "9595:9595"
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - traefik.enable=true
+        - traefik.backend=jedi
+        - traefik.port=9595
+        - "traefik.frontend.rule=PathPrefixStrip: /jedi"
+        - traefik.docker.network=jedi
     env_file:
-      - dev.env
+      - edi-web.env
 networks:
-  infrastructure:
+  jedi:
     external: true

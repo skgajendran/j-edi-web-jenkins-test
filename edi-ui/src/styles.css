@@ -200,3 +200,33 @@ body {
 .navbar-brand {
     padding-top:3px;
 }
+
+.juniper-form .row {
+    margin: 0;
+}
+
+.juniper-form header {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.juniper-form label {
+    display: block;
+}
+
+.juniper-form section {
+    margin: 10px 0;
+}
+
+.juniper-form footer {
+    margin: 10px 0 0;
+    float: right;
+}
+
+.show {
+    display: none;
+}
+
+.hide {
+    display: block;
+}
