@@ -222,3 +222,11 @@ body {
     margin: 10px 0 0;
     float: right;
 }
+
+.show {
+    display: none;
+}
+
+.hide {
+    display: block;
+}
