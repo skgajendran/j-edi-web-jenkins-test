@@ -14,6 +14,7 @@ import {LayoutModule} from "./layout/layout.module";
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AppRoutingModule } from "./app-routing.module";
 import { AutomationModule } from './automation/automation.module';
+import { NotificationsModule } from './notifications/notifications.module'
 
 import { ServicesModule } from './services/services.module';
 import { JcomponentsModule } from './jcomponents/jcomponents.module';
@@ -33,7 +34,8 @@ import { HttpModule } from '@angular/http';
     JcomponentsModule,
     SharedModule,
     HttpModule,
-    AutomationModule
+    AutomationModule,
+    NotificationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
