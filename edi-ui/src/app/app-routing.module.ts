@@ -11,6 +11,7 @@ import { DashboardComponent }   from './dashboard/dashboard.component';
 import { ResultComponent } from './dashboard/result.component';
 import { ResultDetailComponent } from './dashboard/result-detail.component'
 import { TriggerAutomationComponent } from './automation/trigger-automation/trigger-automation.component';
+import { NotificationsComponent } from './notifications/notifications.component'
 
 import { AppComponent } from './app.component';
 import {LayoutComponent} from "./layout/layout.component";
@@ -25,7 +26,8 @@ const routes: Routes = [
         { path: 'dashboard',  component: DashboardComponent },
         { path: 'results/:id',  component: ResultComponent },
         { path: 'results-detail/:id',  component: ResultDetailComponent },
-        { path: 'automation/trigger-automation', component: TriggerAutomationComponent }
+        { path: 'automation/trigger-automation', component: TriggerAutomationComponent },
+        { path: 'notifications', component: NotificationsComponent }
       ]
     }
 ];
