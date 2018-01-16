@@ -6,5 +6,16 @@
             </div>
         </div>
     </div>
+    <div class="row show-scroll">
+        <div class="col-lg-12">
+            <table class="table table-condensed">
+                <tbody>
+                    <tr [ngClass]="(rabbitMessage.severity=='info')?'info':'danger'" *ngFor="let rabbitMessage of rabbitMessages">
+                        <td>{{rabbitMessage.message}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>  
   </div>
   

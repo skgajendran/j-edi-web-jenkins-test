@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { MqService } from './services/mq.service';
 import { environment } from '../environments/environment';
 import { DataService } from './services/data/data.service';
+import { EventMessageService } from './services/data/event-message.service';
 
 @Component({
   selector: 'app-root',
@@ -19,24 +20,31 @@ import { DataService } from './services/data/data.service';
 export class AppComponent implements OnInit {
   title = 'Juniper Automation Platform';
 
-  constructor(private dataService:DataService) { }
+  constructor(private dataService:DataService, private eventMessageService:EventMessageService) { }
   private mqService: MqService = new MqService();
   
   
   ngOnInit() {
 
-        this.mqService.connect(environment.mbEndpoint, environment.mbUsername, environment.mbPassword, "/exchange/jnpr.events/*");
+        this.mqService.connect(environment.mbEndpoint, environment.mbUsername, environment.mbPassword, "/exchange/jnpr.events/messages.#");
 
         this.mqService.onConnect((connectedClient) => {
             this.dataService.webSocketClient = connectedClient.webSocketClient;
-            console.log('connected to /exchange/jnpr.events/*');
+            console.log('connected to /exchange/jnpr.events/messages.#');
         },
         (error) => {
             console.log('there is an error: ');
             console.log(error); 
         });
-        this.mqService.onMessage((message) => console.log(message), (error) => console.log(error));
+        this.mqService.onMessage((message) => this.eventMessageService.pushMessage(message), (error) => console.log(error));
 
+        this.mqService.onError((err) => {
+            console.log(err);
+        });
+
+        this.mqService.onConnectionError((error) => {
+            console.log(error);
+        });
   }
 
 }

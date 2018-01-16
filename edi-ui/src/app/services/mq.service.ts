@@ -29,7 +29,7 @@ export class MqService {
     this.url = url;
     this.login = login;
     this.password = password;
-    this.wsClient = stompobservable.client(url, {debug:false, maxConnectAttempt:10, ttlConnectAttempt:1000, binary:false, heartbeat:{incoming: 10000, outgoing: 10000}});
+    this.wsClient = stompobservable.client(url, {debug:true, maxConnectAttempt:10, ttlConnectAttempt:1000, binary:false, heartbeat:{incoming: 10000, outgoing: 10000}});
     this.sourceConnection = this.wsClient.connect({login: login, passcode: password});
   }
 
@@ -39,7 +39,7 @@ export class MqService {
           onConnect(connectedClient)
       },
       function (err: string) {
-          onError(err) && onError(err);
+          onError && onError(err);
       }
     )
   }
@@ -55,12 +55,12 @@ export class MqService {
                   message.ack()
               },
               function (err) {
-                  onError(err) && onError(err);
+                  onError && onError(err);
               }
           )
       },
       (err: string) => {
-        onError(err)
+        onError && onError(err);
       }
     )
   }
