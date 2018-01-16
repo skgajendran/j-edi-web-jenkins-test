@@ -6,5 +6,17 @@
             </div>
         </div>
     </div>
+    <div class="row show-scroll" *ngFor="let container of rabbitMessages">
+        <div class="col-lg-12"><h2>{{container.routingKey}}</h2></div>
+        <div class="col-lg-12">
+            <table class="table table-condensed">
+                <tbody>
+                    <tr [ngClass]="(rabbitMessage.severity=='info')?'info':'danger'" *ngFor="let rabbitMessage of container.rabbitMessages">  
+                      <td>{{rabbitMessage.message}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>  
   </div>
   
