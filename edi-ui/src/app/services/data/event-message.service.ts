@@ -10,6 +10,8 @@ import { Injectable } from '@angular/core';
 import { RabbitMessage } from '../../models/RabbitMessage';
 
 import * as moment from 'moment';
+import * as _ from 'lodash';
+import { concat } from 'rxjs/operator/concat';
 
 @Injectable()
 export class EventMessageService {
@@ -19,8 +21,17 @@ export class EventMessageService {
     private _rawMessage: Array < any > = [];
     private _rabbitMessages:RabbitMessage[] = [];
 
-    public getRabbitMessages():RabbitMessage[] {
-        return this._rabbitMessages;
+    private rabbitContainer:any = {
+        routingKey:"",
+        rabbitMessages:[] 
+    };
+
+    private containers:any[] = [];
+
+    private rabs = new Map();
+
+    public getRabbitMessages():any {
+        return this.containers;
     }
     
     public pushMessage(message: any) {
@@ -30,7 +41,21 @@ export class EventMessageService {
         if (message && message.body && message.body != '') {
             try {
                 let rabbitMessage:RabbitMessage = JSON.parse(message.body);
-                this._rabbitMessages.push(rabbitMessage);
+                let destination = _.split(message.headers.destination, '/')
+                let routingKey = destination[(destination.length - 1)];
+                let container = _.find(this.containers, function(container) { return container.routingKey === routingKey; })
+
+                if(!container) {
+                    container = {
+                        routingKey:routingKey,
+                        rabbitMessages:[rabbitMessage] 
+                    };
+                    this.containers.unshift(container)
+                }
+                else {
+                    container.rabbitMessages.unshift(rabbitMessage);
+                }
+    
             } catch (error) {
                 console.log(error);
             }

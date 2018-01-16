@@ -12,7 +12,7 @@ export class NotificationsComponent implements OnInit {
 
   constructor(private eventMessageService:EventMessageService) { }
 
-  rabbitMessages:RabbitMessage[] = [];
+  rabbitMessages:Map<any,any> = new Map();
 
   ngOnInit() {
       this.rabbitMessages = this.eventMessageService.getRabbitMessages();
