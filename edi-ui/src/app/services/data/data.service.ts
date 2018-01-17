@@ -6,12 +6,12 @@
 // software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
 // either express or implied.
 import { Injectable } from '@angular/core';
-
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 
 import {Observable} from "rxjs/Rx";
 import { environment } from '../../../environments/environment';
 import { serializePath } from '@angular/router/src/url_tree';
+import { CredsService } from './creds.service';
 
 const OPEN = 1
 
@@ -20,7 +20,9 @@ export class DataService {
 
     webSocketClient: any = undefined;
 
-    constructor(private http: Http) {}
+    constructor(private http: Http, private credsService:CredsService) {
+        
+    }
 
     getDCHPStatus(): Observable < boolean > {
         return Observable.of < boolean > (false);
@@ -38,7 +40,7 @@ export class DataService {
     }
 
     postAutomationProvisioning(provisionData:any): Observable<Response> {
-        let serviceName = environment.apiServer;
+        let serviceName = this.credsService.getAPIServerEndpoint();
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
@@ -55,7 +57,7 @@ export class DataService {
     }
 
     getAutomationResults(): Observable < Response > {
-        let serviceName = environment.apiServer;
+        let serviceName = this.credsService.getAPIServerEndpoint();
         let headers = new Headers({
             'Content-Type': 'application/json'
         });
@@ -72,7 +74,7 @@ export class DataService {
     }
 
     getAutomationResult(id:string): Observable < Response > {
-        let serviceName = environment.apiServer;
+        let serviceName = this.credsService.getAPIServerEndpoint();
         let headers = new Headers({
             'Content-Type': 'application/json'
         });

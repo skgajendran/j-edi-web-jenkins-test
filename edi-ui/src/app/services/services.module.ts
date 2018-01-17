@@ -14,13 +14,14 @@ import { WebSocketService } from './data/websocket.service';
 import { TimerService } from './timer.service';
 import { MqService } from './mq.service';
 import { EventMessageService } from './data/event-message.service';
+import { CredsService } from './data/creds.service';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [],
-  providers:[DataService, WebSocketService, EventBusService, TimerService, MqService, EventMessageService]
+  providers:[DataService, WebSocketService, EventBusService, TimerService, MqService, EventMessageService, CredsService]
 })
 export class ServicesModule { 
   constructor( @Optional() @SkipSelf() parentModule: ServicesModule) {}

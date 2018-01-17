@@ -6,5 +6,9 @@
 // software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, 
 // either express or implied.
 export const environment = {
-  production: true
+  production: true,
+  apiServer: '',
+  mbEndpoint: '',
+  mbUsername: 'juniper',
+  mbPassword: 'Juniper123'
 };

@@ -40,7 +40,15 @@ export class EventMessageService {
 
         if (message && message.body && message.body != '') {
             try {
-                let rabbitMessage:RabbitMessage = JSON.parse(message.body);
+                let rabbitMessage:RabbitMessage = undefined;
+                //Have to parse this twice based on the way the message is coming back from ansible
+                let prMessage = JSON.parse(message.body);
+                if(_.isObject(prMessage)) {
+                    rabbitMessage = prMessage;
+                }
+                else {
+                    rabbitMessage = JSON.parse(prMessage);
+                }
                 let destination = _.split(message.headers.destination, '/')
                 let routingKey = destination[(destination.length - 1)];
                 let container = _.find(this.containers, function(container) { return container.routingKey === routingKey; })
