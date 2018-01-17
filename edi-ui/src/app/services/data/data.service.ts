@@ -11,8 +11,6 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import {Observable} from "rxjs/Rx";
 import { environment } from '../../../environments/environment';
 import { serializePath } from '@angular/router/src/url_tree';
-import { hostname } from 'os';
-
 import { CredsService } from './creds.service';
 
 const OPEN = 1
