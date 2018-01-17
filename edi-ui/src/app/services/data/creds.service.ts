@@ -17,7 +17,7 @@ export class CredsService {
     getAPIServerEndpoint():string {
         let endpoint:string = undefined;
         if(environment.production) {
-            endpoint = `${window.location.host}/api`;
+            endpoint = `${window.location.hostname}/api`;
         }
         else {
             endpoint = environment.apiServer;
