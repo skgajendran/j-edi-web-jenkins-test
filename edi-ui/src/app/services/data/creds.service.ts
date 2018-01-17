@@ -29,7 +29,8 @@ export class CredsService {
     getRabbitMQEndpoint():string {
         let endpoint:string = undefined;
         if(environment.production) {
-            endpoint = window.location.hostname;
+            // ws://10.101.101.11:15674/ws
+            endpoint = `ws://${window.location.hostname}:15674/ws`;
         }
         else {
             endpoint = environment.mbEndpoint;
