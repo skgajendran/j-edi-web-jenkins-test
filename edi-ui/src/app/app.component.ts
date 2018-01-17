@@ -11,6 +11,9 @@ import { MqService } from './services/mq.service';
 import { environment } from '../environments/environment';
 import { DataService } from './services/data/data.service';
 import { EventMessageService } from './services/data/event-message.service';
+import { CredsService} from './services/data/creds.service';
+
+import { RabbitCredentials } from './models/RabbitCredentials';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +23,14 @@ import { EventMessageService } from './services/data/event-message.service';
 export class AppComponent implements OnInit {
   title = 'Juniper Automation Platform';
 
-  constructor(private dataService:DataService, private eventMessageService:EventMessageService) { }
+  constructor(private dataService:DataService, private eventMessageService:EventMessageService, private credsService:CredsService) { }
   private mqService: MqService = new MqService();
   
   
   ngOnInit() {
-
-        this.mqService.connect(environment.mbEndpoint, environment.mbUsername, environment.mbPassword, "/exchange/jnpr.events/messages.#");
+      let webstompUrl = this.credsService.getRabbitMQEndpoint();
+      let rabbitCredentials:RabbitCredentials = this.credsService.getRabbitCredentials();
+        this.mqService.connect(webstompUrl, rabbitCredentials.username, rabbitCredentials.password, "/exchange/jnpr.events/messages.#");
 
         this.mqService.onConnect((connectedClient) => {
             this.dataService.webSocketClient = connectedClient.webSocketClient;
