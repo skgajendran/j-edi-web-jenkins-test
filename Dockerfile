@@ -1,6 +1,6 @@
 FROM node:9.4.0-slim
 
-ARG env_node=dev
+ARG env_node=prod
 ARG tar=production
 ARG cli=1.5.5
 
