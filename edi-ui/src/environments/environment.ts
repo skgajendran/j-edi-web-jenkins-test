@@ -13,8 +13,8 @@
 
 export const environment = {
   production: false,
-  apiServer: '10.101.101.11/api',
-  mbEndpoint: 'ws://10.101.101.11:15674/ws',
+  apiServer: '10.0.1.16/api',
+  mbEndpoint: 'ws://10.0.1.16:15674/ws',
   mbUsername: 'juniper',
   mbPassword: 'Juniper123'
 };

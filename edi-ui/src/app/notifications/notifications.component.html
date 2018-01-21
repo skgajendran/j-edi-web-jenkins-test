@@ -7,11 +7,21 @@
         </div>
     </div>
     <div class="row show-scroll" *ngFor="let container of rabbitMessages">
-        <div class="col-lg-12"><h2>{{container.routingKey}}</h2></div>
+        <div class="col-lg-2">
+            <h5>Message Routing Key:</h5>
+        </div>
+        <div class="col-lg-10">
+            <h6 style="margin-top:12px;margin-bottom:0">{{container.routingKey}}</h6>
+        </div>
         <div class="col-lg-12">
             <table class="table table-condensed">
                 <tbody>
-                    <tr [ngClass]="(rabbitMessage.severity=='info')?'info':'danger'" *ngFor="let rabbitMessage of container.rabbitMessages">  
+                    <tr [ngClass]="{
+                        'success':rabbitMessage.severity === 'success',
+                        'info':rabbitMessage.severity === 'info',
+                        'message-warning':rabbitMessage.severity === 'warning',
+                        'danger':rabbitMessage.severity === 'error'
+                      }" *ngFor="let rabbitMessage of container.rabbitMessages">  
                       <td>{{rabbitMessage.message}}</td>
                     </tr>
                 </tbody>

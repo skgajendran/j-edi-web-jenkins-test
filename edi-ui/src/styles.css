@@ -230,3 +230,7 @@ body {
 .hide {
     display: block;
 }
+
+.message-warning {
+    background-color: #f0ad4e;
+}

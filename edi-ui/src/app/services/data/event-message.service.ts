@@ -28,8 +28,6 @@ export class EventMessageService {
 
     private containers:any[] = [];
 
-    private rabs = new Map();
-
     public getRabbitMessages():any {
         return this.containers;
     }
