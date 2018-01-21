@@ -234,3 +234,11 @@ body {
 .message-warning {
     background-color: #f0ad4e;
 }
+.rabbit-routing-key-label {
+    font-size: 1em;
+    font-weight:bold;
+    padding-right:10px;
+}
+.rabbit-routing-key {
+    color: #392ae6;
+}
