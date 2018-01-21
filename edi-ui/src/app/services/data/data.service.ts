@@ -64,7 +64,7 @@ export class DataService {
         let options = new RequestOptions({
             headers: headers
         });
-        let serviceUrl = `http://${serviceName}/automation-results/results`;
+        let serviceUrl = `http://${serviceName}/automation/results`;
         return this.http
             .get(serviceUrl)
             .catch(err => {
@@ -81,7 +81,7 @@ export class DataService {
         let options = new RequestOptions({
             headers: headers
         });
-        let serviceUrl = `http://${serviceName}/automation-results/results/${id}`;
+        let serviceUrl = `http://${serviceName}/automation/results/${id}`;
         return this.http
             .get(serviceUrl)
             .catch(err => {
