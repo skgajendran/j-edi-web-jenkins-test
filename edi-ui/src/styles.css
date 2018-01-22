@@ -62,6 +62,21 @@ body {
     color:#fff
 }
 
+.menu-item-parent {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.expando {
+    position: absolute!important;
+    right: 10px;
+    top: 10px;
+    float: right;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
 .nav li a {
     line-height: normal;
     font-size: 14px;

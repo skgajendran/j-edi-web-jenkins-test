@@ -2,10 +2,15 @@
       <div id="sidebar-content">
           <ul jnprMenu class="nav list-group">
               <li>
-                  <a class="list-group-item" routerLink="/dashboard" routerLinkActive="active"><i class="fa fa-lg fa-tachometer"></i>Dashboard</a>
+                  <a class="list-group-item" routerLink="/dashboard" routerLinkActive="active"><i class="fa fa-lg fa-tachometer"></i><span class="menu-item-parent">Dashboard</span></a>
               </li>
-              <li>
-                <a class="list-group-item" routerLink="/automation/trigger-automation" routerLinkActive="active"><i class="fa fa-lg fa-fast-forward"></i>Automation</a>
+              <li class="">
+                <a class="list-group-item" href="#" routerLinkActive="active"><i class="fa fa-lg fa-fast-forward"></i><span class="menu-item-parent">Automation</span></a>
+                <ul style="display: none;padding-left: 28px;">
+                    <li routerLinkActive="active">
+                        <a style="padding:7px 12px;" routerLink="/automation/trigger-automation" >{{'Trigger Automation' }}</a>
+                    </li>
+                </ul>
               </li>
               <li>
                 <a class="list-group-item" routerLink="/notifications" routerLinkActive="active"><i class="fa fa-lg fa-envelope-open"></i>Notifications</a>
