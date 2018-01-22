@@ -21,7 +21,16 @@
             Provision Automation
           </header>   
           <fieldset>
-              <div class="row">
+            <div class="row">
+            <section class="col col-4">
+                <label for="automationType">Automation Type</label>
+                <label class="radio-inline" style="display:inline;">
+                    <input type="radio" checked="checked" name="automationType" id="automationProvisioning" value="provisioning"> Provisioing
+                  </label>
+                  <label class="radio-inline" style="display:inline;">
+                    <input type="radio" name="automationType" id="testingProvisioning" value="testing"> Testing
+                  </label>
+              </section>
               <section class="col col-4">
               <label for="automationName">Automation Name</label>
               <label class="input">

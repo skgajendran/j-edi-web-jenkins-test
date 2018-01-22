@@ -39,7 +39,7 @@ export class MenuDirective implements OnInit, AfterContentInit {
       this.$menu.find('li:has(> ul)').each((i, li)=> {
         let $menuItem = $(li);
         let $a = $menuItem.find('>a');
-        let sign = $('<b class="collapse-sign"><em class="fa fa-plus-square-o"/></b>');
+        let sign = $('<b class="collapse-sign expando"><em class="fa fa-plus-square-o"/></b>');
 
         $a.on('click', (e)=> {
           this.toggle($menuItem);
