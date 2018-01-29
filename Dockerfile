@@ -22,7 +22,7 @@ ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 WORKDIR /var/web
 
 RUN npm install && npm install -g @angular/cli@$cli &&\
-    ng build --target=$tar --env=$env_node
+    ng build --target=$tar --env=$env_node --base-href /jedi --deploy-url /jedi
 
 WORKDIR /var/app
 RUN npm install
