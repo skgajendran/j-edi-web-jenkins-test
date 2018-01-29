@@ -16,7 +16,7 @@ var multer = require('multer');
 
 app.use(cors());
 app.options('*', cors());
-app.use(express.static('./public', {redirect:false}));
+app.use(express.static('./public/jedi', {redirect:false}));
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -26,5 +26,5 @@ port = process.env.NODE_PORT
 server.listen(port, "0.0.0.0");
 
 app.get('*', function (req, res) {
-    res.sendFile('./index.html', {root: __dirname + '/public/'});
+    res.sendFile('./index.html', {root: __dirname + '/public/jedi'});
 });
