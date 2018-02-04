@@ -19,9 +19,10 @@ export class TriggerAutomationComponent implements OnInit {
   constructor(private dataService:DataService) { }
   automation:any = {
     tenant_name:"jedi-fwvnfmgr",
-    stack_name:"STACK_201801132127_ZRDM3FRWL95OAM",
-    automation_name:"mns-oam"
+    stack_name:"STACK_201801132127_ZRDM3FRWL95OAM"
   }
+
+  automationName:string = "";
 
   isSuccess:boolean = true;
   hide:boolean = true;
@@ -37,7 +38,7 @@ export class TriggerAutomationComponent implements OnInit {
 
   onSubmit() {
     console.log(this.automation);
-    this.dataService.postAutomationProvisioning(this.automation)
+    this.dataService.postAutomationProvisioning(this.automation, this.automationName)
     .map(response => response.json())
     .subscribe((result) => {
         this.strongMessage = "Success";
