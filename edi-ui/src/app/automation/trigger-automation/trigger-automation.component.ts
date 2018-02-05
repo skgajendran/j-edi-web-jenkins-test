@@ -23,6 +23,8 @@ export class TriggerAutomationComponent implements OnInit {
     automation_name:"mns-oam"
   }
 
+  automationName:string = "";
+
   isSuccess:boolean = true;
   hide:boolean = true;
   strongMessage = "";
@@ -36,8 +38,7 @@ export class TriggerAutomationComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.automation);
-    this.dataService.postAutomationProvisioning(this.automation)
+    this.dataService.postAutomationProvisioning(this.automation, this.automation.automation_name)
     .map(response => response.json())
     .subscribe((result) => {
         this.strongMessage = "Success";

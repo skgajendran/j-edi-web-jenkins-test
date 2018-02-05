@@ -37,6 +37,7 @@ export class DashboardComponent implements OnInit {
     .map((response) => response.json())
     .subscribe((ret) => {
       this.results = ret.results;
+      console.log(this.results);
       this.dtTrigger.next();
     },(error) => {
         console.log(error);

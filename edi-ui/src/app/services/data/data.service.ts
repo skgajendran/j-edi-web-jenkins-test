@@ -39,15 +39,9 @@ export class DataService {
             return Observable.of < boolean > (false);
     }
 
-    postAutomationProvisioning(provisionData:any): Observable<Response> {
+    postAutomationProvisioning(provisionData:any, automationName:string): Observable<Response> {
         let serviceName = this.credsService.getAPIServerEndpoint();
-        let headers = new Headers({
-            'Content-Type': 'application/json'
-        });
-        let options = new RequestOptions({
-            headers: headers
-        });
-        let serviceUrl = `http://${serviceName}/automation/stacks/provision`;
+        let serviceUrl = `http://${serviceName}/automation/provision/${automationName}`;
         return this.http
             .post(serviceUrl, provisionData)
             .catch(err => {
