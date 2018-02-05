@@ -38,7 +38,6 @@ export class TriggerAutomationComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.automation);
     this.dataService.postAutomationProvisioning(this.automation, this.automation.automation_name)
     .map(response => response.json())
     .subscribe((result) => {
