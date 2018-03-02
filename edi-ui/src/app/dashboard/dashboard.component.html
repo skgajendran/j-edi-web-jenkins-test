@@ -24,7 +24,8 @@
                                     {{ play.play.name }} 
                                 </div>
                             </td>
-                            <td>{{ (result.plays[0].play.starttime * 1000) | date:'fullDate' }}</td>
+                            <!-- <td>{{ ((result.plays[0].play.starttime * 1000) | date:'fullDate') || "" }}</td> -->
+                            <td>{{ (result.plays[0]) ? (result.plays[0].play.starttime * 1000 | date:'fullDate') : "" }}</td>
                         </tr>
                     </tbody>
             </table>
