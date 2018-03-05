@@ -6,6 +6,10 @@
                     <td colspan="3"><span style="font-weight:bold">Results of Running an Automation Playbook</span></td>
                 </tr>
                 <tr>
+                    <td style="width:20%"><span style="font-weight:bold">Transaction Id:</span></td>
+                    <td colspan="2">{{playResult?.transaction_id}}</td>
+                </tr>
+                <tr>
                     <td><span style="font-weight:bold">Result Id:</span></td>
                     <td>{{playResult?._id?.$oid}}</td>
                     <td style="width:75%">&nbsp;</td>
