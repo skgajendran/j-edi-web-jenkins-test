@@ -1,0 +1,93 @@
+<div class="content" style="padding-bottom:50px">
+  <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="page-header">
+              <h1 class="" style="font-size: 24px; font-weight:300"><i class="fa-fw fa fa-fast-forward"></i> Automation <span style="font-size: 16px;">&gt; VNF Create</span></h1>
+          </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-dismissible" [ngClass]="{'alert-success': isSuccess, 'alert-danger': !isSuccess, 'hide': hide, 'show': !hide}" role="alert">
+            <button type="button" (click)="onClick()" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>{{strongMessage}}!</strong> {{description}}
+          </div>   
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+      <form class="juniper-form" #mainForm="ngForm"  (ngSubmit)="onSubmit()">
+          <header>
+            VNF Create
+          </header>   
+          <fieldset>
+            <div class="row">
+
+            <section class="col col-4">
+                <label for="tenantName">OS Tenant Name</label>
+                <label class="input">
+                        <input type="text" placeholder="tenant name" id="tenantName" class="form-control" required  maxlength="50"
+                            name="tenantName" [(ngModel)]="automation.tenant_name" #tenantName="ngModel" >
+                </label>
+              </section>
+                      
+            <section class="col col-4">
+              <label for="av_zone">OS Availability Zone</label>
+              <label class="input">
+                  <input type="text" placeholder="os availability zone" id="avZone" class="form-control" required  maxlength="50"
+                      name="avZone" [(ngModel)]="automation.os_av_zone" #avZone="ngModel" >
+              </label>
+            </section>
+
+            <section class="col col-4">
+              <label for="av_zone">OS Management Network Name</label>
+              <label class="input">
+                  <input type="text" placeholder="network name" id="networkName" class="form-control" required  maxlength="50"
+                      name="networkName" [(ngModel)]="automation.mgt_network_name" #networkName="ngModel" >
+              </label>
+            </section>
+
+            <section class="col col-4">
+              <label for="av_zone">VM Image UUID</label>
+              <label class="input">
+                  <input type="text" placeholder="vm image uuid" id="imageUuid" class="form-control" required  maxlength="50"
+                      name="imageUuid" [(ngModel)]="automation.vnf_vm_uuid" #imageUuid="ngModel" >
+              </label>
+            </section>
+
+            <section class="col col-4">
+              <label for="av_zone">VM Image Flavor</label>
+              <label class="input">
+                  <input type="text" placeholder="vm image flavor" id="vmImageFlavor" class="form-control" required  maxlength="50"
+                      name="vmImageFlavor" [(ngModel)]="automation.vnf_flavor" #vmImageFlavor="ngModel" >
+              </label>
+            </section>
+
+            <section class="col col-4">
+              <label for="av_zone">VM Test Image Name</label>
+              <label class="input">
+                  <input type="text" placeholder="vm test image name" id="testImageName" class="form-control" required  maxlength="50"
+                      name="testImageName" [(ngModel)]="automation.test_vm_image_name" #testImageName="ngModel" >
+              </label>
+            </section>
+
+            <section class="col col-4">
+              <label for="av_zone">VNF Id Seed</label>
+              <label class="input">
+                  <input type="text" placeholder="vnf id seed" id="vnfIdSeed" class="form-control" required  maxlength="50"
+                      name="vnfIdSeed" [(ngModel)]="automation.vnf_id_seed" #vnfIdSeed="ngModel" >
+              </label>
+            </section>
+
+              </div>
+          </fieldset>
+          <footer>
+              <button type="submit" class="btn btn-primary" title="Submit" [disabled]="!mainForm.form.valid">Submit</button>
+            <button type="button" class="btn btn-default" onclick="window.history.back();">
+              Back
+            </button>
+          </footer>
+      </form>
+    </div>
+  </div>
+</div>
