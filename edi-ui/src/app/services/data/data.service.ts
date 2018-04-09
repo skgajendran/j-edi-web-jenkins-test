@@ -50,6 +50,17 @@ export class DataService {
             });  
     }
 
+    postVNFCreate(vnfData:any): Observable<Response> {
+        let serviceName = this.credsService.getAPIServerEndpoint();
+        let serviceUrl = `http://${serviceName}/automation/vnf/stack`;
+        return this.http
+            .post(serviceUrl, vnfData)
+            .catch(err => {
+                console.log('Error kicking off VNF create.');
+                return Observable.throw(err);
+            });  
+    }
+
     getAutomationResults(): Observable < Response > {
         let serviceName = this.credsService.getAPIServerEndpoint();
         let headers = new Headers({
