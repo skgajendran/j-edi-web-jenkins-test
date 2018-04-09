@@ -12,6 +12,7 @@ import { ResultComponent } from './dashboard/result.component';
 import { ResultDetailComponent } from './dashboard/result-detail.component'
 import { TriggerAutomationComponent } from './automation/trigger-automation/trigger-automation.component';
 import { NotificationsComponent } from './notifications/notifications.component'
+import { VnfCreateComponent } from './automation/vnf-create/vnf-create.component';
 
 import { AppComponent } from './app.component';
 import {LayoutComponent} from "./layout/layout.component";
@@ -27,6 +28,7 @@ const routes: Routes = [
         { path: 'results/:id',  component: ResultComponent },
         { path: 'results-detail/:id',  component: ResultDetailComponent },
         { path: 'automation/trigger-automation', component: TriggerAutomationComponent },
+        { path: 'automation/vnf-create', component: VnfCreateComponent },
         { path: 'notifications', component: NotificationsComponent }
       ]
     }
