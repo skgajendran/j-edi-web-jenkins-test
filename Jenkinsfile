@@ -19,6 +19,8 @@ node('docker') {
   // Scope image outside of stage.
   def image
 
+  rev  = "build-$BUILD_NUMBER"
+
   stage('Build image') {
     sh 'printenv'
     checkout scm
@@ -28,12 +30,12 @@ node('docker') {
 
   stage('Test') {
     echo  "${label}: Trying to run container"
-    sh "docker run -d --name web-app ${label}"
+    sh "docker run -d --name web-app$rev ${label}"
     echo "Verifying that container is available"
-    def command = "docker inspect -f {{.State.Running}} web-app|grep true"
+    def command = "docker inspect -f {{.State.Running}} web-app$rev|grep true"
     sh(script: "${command}")
     echo "Deleting test container ${label}"
-    sh "docker rm -f web-app"
+    sh "docker rm -f web-app$rev"
   }
 
   // stage('Push image') {
