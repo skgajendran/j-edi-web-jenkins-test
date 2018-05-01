@@ -33,7 +33,7 @@ node('docker') {
     def command = "docker inspect -f {{.State.Running}} web-app|grep true"
     sh(script: "${command}")
     echo "Deleting test container ${label}"
-    sh "docker rm -f ${label}"
+    sh "docker rm -f web-app"
   }
 
   // stage('Push image') {
