@@ -27,13 +27,13 @@ node('docker') {
   }
 
   stage('Test') {
-    echo  "${label}: Trying to run container"
-    sh "docker run -d --name ${label}"
+    echo  "${repo}: Trying to run container"
+    sh "docker run -d --name ${repo}"
     echo "Verifying that container is available"
-    def command = "docker inspect -f {{.State.Running}} ${label}|grep true"
+    def command = "docker inspect -f {{.State.Running}} ${repo}|grep true"
     sh(script: "${command}")
-    echo "Deleting test container ${label}"
-    sh "docker rm -f ${label}"
+    echo "Deleting test container ${repo}"
+    sh "docker rm -f ${repo}"
   }
 
   // stage('Push image') {
