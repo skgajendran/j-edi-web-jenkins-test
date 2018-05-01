@@ -23,7 +23,7 @@ node('docker') {
     sh 'printenv'
     checkout scm
     image = docker.build("$label")
-    echo image
+    echo "${image}"
   }
 
   stage('Test') {
