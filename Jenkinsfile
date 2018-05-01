@@ -9,7 +9,7 @@
 # either express or implied.
 */
 def rev
-node('docker') {
+node() {
   
   // Put branch name into label
   def repo = 'j-edi-web'
