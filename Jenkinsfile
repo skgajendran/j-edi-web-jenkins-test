@@ -28,9 +28,9 @@ node('docker') {
 
   stage('Test') {
     echo  "${label}: Trying to run container"
-    sh "docker run -d ${label}"
+    sh "docker run -d --name web-app ${label}"
     echo "Verifying that container is available"
-    def command = "docker inspect -f {{.State.Running}} ${label}|grep true"
+    def command = "docker inspect -f {{.State.Running}} web-app|grep true"
     sh(script: "${command}")
     echo "Deleting test container ${label}"
     sh "docker rm -f ${label}"
