@@ -9,7 +9,7 @@
 # either express or implied.
 */
 def rev
-node() {
+node('docker') {
   
   // Put branch name into label
   def repo = 'j-edi-web'
@@ -27,26 +27,26 @@ node() {
 
   stage('Test') {
     echo  "${label}: Trying to run container"
-    sh "docker run -d --name automation-mns-oam-$rev juniperps/automation-mns-oam:$rev"
+    sh "docker run -d --name ${label}"
     echo "Verifying that container is available"
     def command = "docker inspect -f {{.State.Running}} automation-mns-oam-$rev|grep true"
     sh(script: "${command}")
     echo "Deleting test container automation-mns-oam-$rev"
-    sh "docker rm -f automation-mns-oam-$rev"
+    sh "docker rm -f ${label}"
   }
 
-  stage('Push image') {
-    // Push $label and update latest.
-    docker.withRegistry('https://ps-docker-internal.artifactory.aslab.juniper.net', 'ps-ci') {
-      image.push()
-      if ("$BRANCH_NAME" == 'master') {
-        image.push('latest')
-      }
-    }
-    // Post publish notification to channel if configured.
-    if (env.JEDI_WEBHOOK_URL) { 
-      office365ConnectorSend message: "Image Published", status:"$label published ($BRANCH_NAME branch).", webhookUrl: env.JEDI_WEBHOOK_URL 
-    }
-  }
+  // stage('Push image') {
+  //   // Push $label and update latest.
+  //   docker.withRegistry('https://ps-docker-internal.artifactory.aslab.juniper.net', 'ps-ci') {
+  //     image.push()
+  //     if ("$BRANCH_NAME" == 'master') {
+  //       image.push('latest')
+  //     }
+  //   }
+  //   // Post publish notification to channel if configured.
+  //   if (env.JEDI_WEBHOOK_URL) { 
+  //     office365ConnectorSend message: "Image Published", status:"$label published ($BRANCH_NAME branch).", webhookUrl: env.JEDI_WEBHOOK_URL 
+  //   }
+  // }
 
 }
