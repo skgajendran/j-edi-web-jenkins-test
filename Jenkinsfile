@@ -23,15 +23,16 @@ node('docker') {
     sh 'printenv'
     checkout scm
     image = docker.build("$label")
+    echo image
   }
 
   stage('Test') {
     echo  "${label}: Trying to run container"
     sh "docker run -d --name ${label}"
     echo "Verifying that container is available"
-    def command = "docker inspect -f {{.State.Running}} automation-mns-oam-$rev|grep true"
+    def command = "docker inspect -f {{.State.Running}} ${label}|grep true"
     sh(script: "${command}")
-    echo "Deleting test container automation-mns-oam-$rev"
+    echo "Deleting test container ${label}"
     sh "docker rm -f ${label}"
   }
 
