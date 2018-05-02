@@ -38,9 +38,11 @@ node('docker') {
     // sh "docker rm -f web-app$rev"
   }
   stage('Build nginx') {
-    echo "${rev}: Building nginx container from Dockerfile"
+    echo "${rev}: Building nginx container and copying the files"
     sh "make build"
     sh "make run"
+    sh "make copy"
+
 
   }
 
