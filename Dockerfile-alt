@@ -1,6 +1,5 @@
 FROM nginx:1.13.12-alpine
 
-COPY ./app/ /var/app/
 COPY ./nginx/ /etc/nginx/
 
 WORKDIR /var/app
