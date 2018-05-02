@@ -39,7 +39,9 @@ node('docker') {
   }
   stage('Build nginx') {
     echo "${rev}: Building nginx container from Dockerfile"
-    sh "make test-config"
+    sh "make build"
+    sh "make run"
+
   }
 
   // stage('Push image') {
